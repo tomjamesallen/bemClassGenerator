@@ -1,6 +1,6 @@
 {
   "name": "bem-class-generator",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Helper to generate bem style CSS class names.",
   "main": "./lib/index.js",
   "scripts": {
