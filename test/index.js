@@ -1,1 +1,2 @@
 require('./bemClassGenerator');
+require('./blockNameFromFile');
