@@ -1,3 +1,5 @@
+import blockNameFromFile from './blockNameFromFile';
+
 const defaultOptions = {
   // Whether to return the block or element class name as well as the modified
   // block or element class.
@@ -6,13 +8,26 @@ const defaultOptions = {
   // Whether to return an array of classnames. If false, will return a space
   // separated string of class names.
   returnArray: false,
+
+  // Whether to automatically convert module names, file names and file paths to
+  // block safe dash-case name.
+  convertToBlockName: true,
+
+  // An optional custom file extension to use when extracting a block name from
+  // a file name or file path.
+  customFileExtension: null,
 };
 
-const bemClassGenerator = (b = '', userOptions = {}) => {
+const bemClassGenerator = (bInput = '', userOptions = {}) => {
   const options = {
     ...defaultOptions,
     ...userOptions,
   };
+
+  const b = options.convertToBlockName ?
+    blockNameFromFile(bInput, options.customFileExtension) :
+    bInput;
+
   const genB = () => b;
   const genE = e => (e ? `__${e}` : '');
   const genM = m => (m ? `--${m}` : '');

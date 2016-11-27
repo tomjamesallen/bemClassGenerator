@@ -2,6 +2,10 @@
 import { expect } from 'chai';
 import bemClassGenerator from '../src/index';
 
+const BASE_MODULE = 'MyModule';
+const BASE_FILENAME = 'MyModule.js';
+const BASE_FILEPATH = '/src/components/MyModule.js';
+const BASE_FILEPATH_CUSTOM_EXTENSION = '/src/components/MyModule.react.js';
 const BASE_CLASS = 'my-module';
 const BASE_MODIFIER = 'modifier-1';
 const BASE_MODIFIER_2 = 'modifier-2';
@@ -79,6 +83,27 @@ describe('bemClassGenerator', () => {
         expect(el()).to.equal(`${BASE_CLASS}__${EL}`);
         expect(el(EL_MODIFIER)).to.equal(`${BASE_CLASS}__${EL} ${BASE_CLASS}__${EL}--${EL_MODIFIER}`);
       });
+    });
+  });
+
+  describe('passing alternative formats for `b`', () => {
+    it('it should accept a module name as its `b` argument', () => {
+      const bem = bemClassGenerator(BASE_MODULE);
+      expect(bem()).to.equal(BASE_CLASS);
+    });
+    it('it should accept a file name as its `b` argument', () => {
+      const bem = bemClassGenerator(BASE_FILENAME);
+      expect(bem()).to.equal(BASE_CLASS);
+    });
+    it('it should accept a file path as its `b` argument', () => {
+      const bem = bemClassGenerator(BASE_FILEPATH);
+      expect(bem()).to.equal(BASE_CLASS);
+    });
+    it('it should accept a file path with a custom extension as its `b` argument', () => {
+      const bem = bemClassGenerator(BASE_FILEPATH_CUSTOM_EXTENSION, {
+        customFileExtension: 'react.js',
+      });
+      expect(bem()).to.equal(BASE_CLASS);
     });
   });
 });
