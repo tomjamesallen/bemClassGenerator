@@ -22,7 +22,8 @@
     "url": "git+https://github.com/tomjamesallen/bemClassGenerator"
   },
   "keywords": [
-    "boilerplate",
+    "bem",
+    "css",
     "npm",
     "module",
     "node",

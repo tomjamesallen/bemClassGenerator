@@ -7,6 +7,10 @@ describe('blockNameFromFile', () => {
     expect(blockNameFromFile('/src/js/components/MyComponent.js')).to.equal('my-component');
   });
 
+  it('should convert a full pathname with backslashes to a block name', () => {
+    expect(blockNameFromFile('\\src\\js\\components\\MyComponent.js')).to.equal('my-component');
+  });
+
   it('should convert a full pathname in dash-case to a block name', () => {
     expect(blockNameFromFile('/src/js/components/my-component.js')).to.equal('my-component');
   });
